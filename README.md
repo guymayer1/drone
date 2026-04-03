@@ -106,12 +106,19 @@ The system enforces the following rules:
 
 <img width="872" height="102" alt="image" src="https://github.com/user-attachments/assets/64bd169e-1daa-423f-b661-4983b993598a" />
 
-## This query lists all of the drones, their ids, their current status, their total trips made, and their total distance traveled.
-### Managerial Explanation: This query gives managers a stronger view of drone productivity by combining operational status with trip count and total distance traveled. It helps identify the most heavily used drones, compare fleet performance, and support decisions about workload balancing, resource planning, and maintenance scheduling.
+## This query lists the drone ID, status, facility address, average speed in miles per minute, and current battery level for faster than average drones with a sufficient battery level. 
+### Managerial Explanation: This query is to be used in emergencies, such as same-day-delivery orders or medical emergencies than might need a certain medicine delivered ASAP. It shows managers all the relevant information they might need to decide what drone to use to make those urgent deliveries, such as their battery level and where they're located at the moment. Managers can choose the fastest drone closest to the warehouse where the package is stored to make the delivery.
 
-#### SELECT Drone.droneID, Drone.status AS "CurrentStatus", COUNT(Trip.tripID) AS "TotalTrips", SUM(Trip.tripDistance) AS "TotalDistance" FROM Drone LEFT JOIN Trip ON Drone.droneID = Trip.Drone_droneID GROUP BY Drone.droneID, Drone.status HAVING totalTrips > 0 ORDER BY totalDistance DESC;
+#### SELECT Drone_droneID, Drone.status, facilityAddress, AVG(tripDistance/tripLength) AS avg_drone_mpm, battery
+FROM Drone
+JOIN storage_facility ON facilityID = `Storage Facility_facilityID`
+JOIN Trip ON Drone_droneID = droneID
+WHERE battery > 70
+GROUP BY Drone_droneID, Drone.status, facilityAddress
+HAVING avg_drone_mpm < (SELECT AVG(tripDistance/tripLength) FROM Trip) ORDER BY avg_drone_mpm DESC;
 
-<img width="624" height="264" alt="image" src="https://github.com/user-attachments/assets/b01a1b30-0362-4093-9978-3d42e92d0b70" />
+<img width="803" height="94" alt="image" src="https://github.com/user-attachments/assets/2e8f0c55-e9c0-4117-9a03-25c958359c5a" />
+
 
 ## This query calculates how many packages each warehouse has handled and the total weight of those packages, then ranks the warehouses from highest to lowest activity, for warehouses that have handled at least one package.
 ### Managerial Explanation: This query helps management evaluate warehouse activity by showing how many packages each warehouse has handled and the total weight processed. It is useful for comparing warehouse workload, identifying high-volume locations, and supporting decisions related to staffing, resource allocation, and operational efficiency.
