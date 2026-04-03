@@ -130,7 +130,14 @@ The system enforces the following rules:
 REPLACE: ## EXISTS: Find technicians who have performed at least one maintenance job
 ### Managerial Explanation:This query helps managers confirm which technicians are actively contributing to maintenance operations. It can be useful for workforce evaluation, staffing reviews, and understanding which personnel are involved in maintaining fleet readiness.
 
-#### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName FROM Technicians WHERE EXISTS (    SELECT * FROM maintenance_logs  WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID );
+#### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName
+FROM Technicians
+WHERE NOT EXISTS (
+    SELECT *
+    FROM maintenance_logs
+    WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID 
+    AND maintenanceDate > '2026-01-01 00:00:00'
+);
 
 <img width="430" height="225" alt="image" src="https://github.com/user-attachments/assets/b667a269-68d2-406b-aff1-9cbe3b62db0c" />
 
