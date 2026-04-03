@@ -127,9 +127,8 @@ The system enforces the following rules:
 
 <img width="250" height="148" alt="image" src="https://github.com/user-attachments/assets/f4282411-8081-460a-9203-cf4e81eecc9f" />
 
-REPLACE: ## EXISTS: Find technicians who have performed at least one maintenance job
-### Managerial Explanation:This query helps managers confirm which technicians are actively contributing to maintenance operations. It can be useful for workforce evaluation, staffing reviews, and understanding which personnel are involved in maintaining fleet readiness.
-
+REPLACE: ## NOT EXISTS: Find technicians who haven't performed a maintenance in 2026 yet.
+### Managerial Explanation: This query helps managers identify technicians who haven't been contributing or have been laid off but not yet removed from the system, clearing it of irrelevant data and keeping payroll up to date.
 #### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName
 FROM Technicians
 WHERE NOT EXISTS (
