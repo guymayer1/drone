@@ -138,7 +138,8 @@ WHERE NOT EXISTS (
     AND maintenanceDate > '2026-01-01 00:00:00'
 );
 
-<img width="430" height="225" alt="image" src="https://github.com/user-attachments/assets/b667a269-68d2-406b-aff1-9cbe3b62db0c" />
+<img width="470" height="114" alt="image" src="https://github.com/user-attachments/assets/227bdf60-b8e0-438f-a7b9-34ea432160c0" />
+
 
 ## Find drones that have at least one trip over 10 miles
 ### Managerial Explanation: This query helps managers identify drones that are being used for longer-distance deliveries. This is useful for evaluating route demands, determining which drones are handling more intensive assignments, and assessing whether long-distance trips are being assigned appropriately based on drone capability and battery constraints.
