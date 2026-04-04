@@ -4,9 +4,13 @@
 
 # Team Members:
 Guy Mayer: https://github.com/guymayer1/drone  
+
 David Moreno: https://github.com/dmon67854
+
 Mariana Munoz: https://github.com/Mariana-Munoz-70445 
+
 Nadia Nazeem: https://github.com/nadianaz07 
+
 Kevin Behlke: https://github.com/kwb95124
 
 
