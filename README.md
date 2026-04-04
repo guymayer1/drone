@@ -4,9 +4,9 @@
 
 # Team Members:
 Guy Mayer: https://github.com/guymayer1/drone  
-David Moreno  https://github.com/dmon67854
+David Moreno: https://github.com/dmon67854
 Mariana Munoz: https://github.com/Mariana-Munoz-70445 
-Nadia Nazeem  
+Nadia Nazeem: https://github.com/nadianaz07 
 Kevin Behlke: https://github.com/kwb95124
 
 
@@ -51,8 +51,6 @@ The model also supports key operational constraints. Charging stations and charg
 
 
 # Data Dictionary
-
-# Data Dictionary
 [Mist 4610 data dict.pdf](https://github.com/user-attachments/files/26470808/Mist.4610.data.dict.pdf)
 <img width="846" height="927" alt="image" src="https://github.com/user-attachments/assets/3232a2d6-6118-489d-b2f4-c679b631c3e4" />
 <img width="845" height="929" alt="image" src="https://github.com/user-attachments/assets/7f350c78-993f-4760-b760-274e2067823f" />
@@ -63,14 +61,6 @@ The model also supports key operational constraints. Charging stations and charg
 
 
 # Simple Queries:
-
-## Query for drone models in the Athens area that is AeroX Pro
-
-### Managerial Explanation: This query helps management identify which deliveries in the Athens area are being handled by a specific drone model. This is useful for tracking how certain models are being deployed in different locations, evaluating model performance in a target service area, and supporting decisions about where particular drone types should be used most often.
-
-#### SELECT shipping_destination.destinationAddress, Drone.model FROM Trip JOIN Drone ON Trip.Drone_droneID = Drone.droneID JOIN shipping_destination  ON shipping_destination.Trip_TripID = Trip.TripID WHERE destinationAddress LIKE '%Athens%' and model = "AeroX Pro"; 
-
-<img width="630" height="126" alt="image" src="https://github.com/user-attachments/assets/04d96ebe-dd93-42c3-b390-49c87ac37051" />
 
 ## Drone and status 
 
@@ -99,13 +89,6 @@ The model also supports key operational constraints. Charging stations and charg
 #### SELECT Trip.Drone_droneID, SUM(Trip.tripDistance) AS total_distance_flown FROM Trip GROUP BY Trip.Drone_droneID;
 
 <img width="413" height="230" alt="image" src="https://github.com/user-attachments/assets/e0bba2ff-25ff-47ae-9134-513ae0c88e36" />
-
-## Packages with destination
-### Managerial Explanation: This query helps managers track what packages are going to which delivery destinations. It is useful for monitoring delivery patterns, confirming routing accuracy, and understanding customer demand by location. Over time, this can support better route planning and service allocation.
-
-#### SELECT packageID, packageType, weight, destinationAddress FROM Packages JOIN shipping_destination ON Packages.shipping_destination_destinationID = shipping_destination.destinationID;
-
-<img width="580" height="335" alt="image" src="https://github.com/user-attachments/assets/57b459ef-9da2-475f-a3ba-7f28711d1aa6" />
 
 # Complex Queries 
 
