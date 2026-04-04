@@ -99,7 +99,7 @@ The model also supports key operational constraints. Charging stations and charg
 ## Use this to see which drones that are in flight are low on battery (and need to find a charging station soon)
 ### Managerial Explanation: This query helps managers quickly evaluate which active drones are in strong condition and which may need charging soon. Instead of only showing a battery number, it translates battery levels into more practical categories, making it easier to prioritize operational decisions and respond quickly when a drone may need to leave service for charging.
 
-#### SELECT *, CASE 	WHEN battery > 67 THEN "Good to go"       WHEN battery > 33 THEN "Monitor Battery" WHEN battery <= 32 THEN "Charge Soon" END AS BatteryLevel FROM Drone WHERE status = "In-Flight";
+#### SELECT *, CASE     WHEN battery > 67 THEN "Good to go"       WHEN battery > 33 THEN "Monitor Battery" WHEN battery <= 32 THEN "Charge Soon" END AS BatteryLevel FROM Drone WHERE status = "In-Flight";
 
 <img width="872" height="102" alt="image" src="https://github.com/user-attachments/assets/64bd169e-1daa-423f-b661-4983b993598a" />
 
@@ -135,7 +135,7 @@ HAVING avg_drone_mpm < (SELECT AVG(tripDistance/tripLength) FROM Trip) ORDER BY 
 
 #### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName FROM Technicians WHERE NOT EXISTS (SELECT * FROM maintenance_logs WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID AND maintenanceDate > '2026-01-01 00:00:00');
 
-<img width="666" height="199" alt="image" src="https://github.com/user-attachments/assets/2dc202fe-1cb5-4f69-a7c1-351f55a0e764" />
+<img width="458" height="117" alt="image" src="https://github.com/user-attachments/assets/f794a8f7-d5aa-463a-9596-5607adba1b5e" />
 
 
 ## Find drones that have at least one trip over 10 miles
@@ -143,12 +143,4 @@ HAVING avg_drone_mpm < (SELECT AVG(tripDistance/tripLength) FROM Trip) ORDER BY 
 
 #### SELECT Drone.droneID FROM Drone WHERE EXISTS (SELECT * FROM Trip WHERE Trip.Drone_droneID = Drone.droneID AND Trip.tripDistance > 10);
 
-<img width="174" height="286" alt="image" src="https://github.com/user-attachments/assets/736f6748-ae2f-4028-bd26-715ad4d4d793" />
-
-
-
-
-
-
-
-
+<img width="1029" height="270" alt="image" src="https://github.com/user-attachments/assets/7dc8fdec-b728-4da1-879f-cac7d2760a36" />
