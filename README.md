@@ -1,4 +1,4 @@
-# NAME:
+# NAME:Guy Mayer
 # Sp26_71552_Group 4: "Last-Mile" Urban Logistics (Drone Delivery)
 # Urban Logistics: Drone Delivery System
 
@@ -62,6 +62,21 @@ The model also supports key operational constraints. Charging stations and charg
 <img width="734" height="935" alt="image" src="https://github.com/user-attachments/assets/0f927258-f264-491e-ad57-b7d7d8625ad3" />
 <img width="734" height="911" alt="image" src="https://github.com/user-attachments/assets/814b5fc8-cd16-4d5d-9ab4-07ad5c40ab7a" />
 
+# `USE ns_Sp26_71552_Group4;`
+
+All queries included in this project were implemented as stored procedures in MySQL Workbench and follow the required naming convention:
+
+- `TP_Q1`
+- `TP_Q2`
+- `TP_Q3`
+- `TP_Q4`
+- `TP_Q5`
+- `TP_Q6`
+- `TP_Q7`
+- `TP_Q8`
+- `TP_Q9`
+
+Each stored procedure corresponds to one of the queries presented in this README and was used to support the operational and managerial insights discussed throughout the project.
 
 
 # Simple Queries:
