@@ -151,7 +151,7 @@ The model also supports key operational constraints. Charging stations and charg
 
 <img width="458" height="117" alt="image" src="https://github.com/user-attachments/assets/f794a8f7-d5aa-463a-9596-5607adba1b5e" />
 
-## 
+## List the total trips taken, distance covered, average trip distance, drones used, and total packages delivered in every area code. For each area code, give it a status based on its current trip-to-drone ratio. If it has above a 5-1 TTD ratio, give it the status, "Needs more drones." If the number of trips taken is greater than 5, label it "Monitor demand." Else, label it "Current Capacity is Fine." 
 
 ### Managerial Explanation: This query helps management see which service areas are busiest, how far drones are traveling in those areas, how many packages are being delivered, and how many drones are currently being used there. It also adds a demand label so managers can quickly spot areas that may need more drone support in the future.
 #### SELECT Route.areaCode, COUNT(Trip.tripID) AS TotalTrips, SUM(Trip.tripDistance) AS TotalDistance, AVG(Trip.tripDistance) AS AvgTripDistance, COUNT(DISTINCT Trip.Drone_droneID) AS DronesUsed, COUNT(Packages.packageID) AS TotalPackages, CASE     WHEN COUNT(Trip.tripID) >= 10 AND COUNT(DISTINCT Trip.Drone_droneID) <= 2 THEN 'Needs More Drones'    WHEN COUNT(Trip.tripID) >= 5 THEN 'Monitor Demand' ELSE 'Current Capacity is Fine' END AS AreaDemandStatus FROM Route LEFT JOIN Trip    ON Route.routeID = Trip.Route_routeID LEFT JOIN Trip_Packages     ON Trip.tripID = Trip_Packages.Trip_TripID LEFT JOIN Packages     ON Trip_Packages.Packages_packageID = Packages.packageID GROUP BY Route.areaCode HAVING COUNT(Trip.tripID) > 0 ORDER BY TotalTrips DESC, TotalDistance DESC;
