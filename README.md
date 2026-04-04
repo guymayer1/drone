@@ -77,9 +77,6 @@ The model also supports key operational constraints. Charging stations and charg
 | TP_Q9 | Inactive maintenance workers | | | | | | | | | X (`NOT EXISTS`) | |
 | TP_Q10 | Area demand and future drone support | X | X | | X (`COUNT`, `SUM`, `AVG`, `COUNT DISTINCT`) | X | X | X | | | X |
 
-
-# `USE ns_Sp26_71552_Group4;`
-
 # Simple Queries:
 
 ## List every drone's ID, status, battery level, and total flight hours.
@@ -159,6 +156,8 @@ The model also supports key operational constraints. Charging stations and charg
 
 <img width="817" height="198" alt="image" src="https://github.com/user-attachments/assets/36f17ab2-4086-493f-b7f2-7143e4eb9eaf" />
 
+
+# `USE ns_Sp26_71552_Group4;`
 
 All queries included in this project were implemented as stored procedures in MySQL Workbench and follow the required naming convention:
 
