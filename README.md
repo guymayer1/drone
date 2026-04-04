@@ -137,10 +137,9 @@ HAVING avg_drone_mpm < (SELECT AVG(tripDistance/tripLength) FROM Trip) ORDER BY 
 
 <img width="458" height="117" alt="image" src="https://github.com/user-attachments/assets/f794a8f7-d5aa-463a-9596-5607adba1b5e" />
 
+## Which areas have the highest delivery demand, how much distance is being covered there, how many drones are serving that area, and which areas may need more drone support in the future?
+### Managerial Explanation: This query helps management see which service areas are busiest, how far drones are traveling in those areas, how many packages are being delivered, and how many drones are currently being used there. It also adds a demand label so managers can quickly spot areas that may need more drone support in the future.
+#### SELECT Route.areaCode, COUNT(Trip.tripID) AS TotalTrips, SUM(Trip.tripDistance) AS TotalDistance, AVG(Trip.tripDistance) AS AvgTripDistance, COUNT(DISTINCT Trip.Drone_droneID) AS DronesUsed, COUNT(Packages.packageID) AS TotalPackages, CASE     WHEN COUNT(Trip.tripID) >= 10 AND COUNT(DISTINCT Trip.Drone_droneID) <= 2 THEN 'Needs More Drones'    WHEN COUNT(Trip.tripID) >= 5 THEN 'Monitor Demand' ELSE 'Current Capacity is Fine' END AS AreaDemandStatus FROM Route LEFT JOIN Trip    ON Route.routeID = Trip.Route_routeID LEFT JOIN Trip_Packages     ON Trip.tripID = Trip_Packages.Trip_TripID LEFT JOIN Packages     ON Trip_Packages.Packages_packageID = Packages.packageID GROUP BY Route.areaCode HAVING COUNT(Trip.tripID) > 0 ORDER BY TotalTrips DESC, TotalDistance DESC;
 
-## Find drones that have at least one trip over 10 miles
-### Managerial Explanation: This query helps managers identify drones that are being used for longer-distance deliveries. This is useful for evaluating route demands, determining which drones are handling more intensive assignments, and assessing whether long-distance trips are being assigned appropriately based on drone capability and battery constraints.
+<img width="817" height="198" alt="image" src="https://github.com/user-attachments/assets/36f17ab2-4086-493f-b7f2-7143e4eb9eaf" />
 
-#### SELECT Drone.droneID FROM Drone WHERE EXISTS (SELECT * FROM Trip WHERE Trip.Drone_droneID = Drone.droneID AND Trip.tripDistance > 10);
-
-<img width="1029" height="270" alt="image" src="https://github.com/user-attachments/assets/7dc8fdec-b728-4da1-879f-cac7d2760a36" />
