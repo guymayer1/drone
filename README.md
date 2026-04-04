@@ -86,7 +86,7 @@ The model also supports key operational constraints. Charging stations and charg
 #### SELECT Drone.droneID, Drone.status, Drone.battery, Drone.flightHours FROM Drone;
 <img width="394" height="259" alt="image" src="https://github.com/user-attachments/assets/01714170-e013-42b6-8f09-1390ac0ec179" />
 
-## For every drone that has surpassed 50 flight hours, list its ID and total flight hours.
+## For every drone that has surpassed 50 flight hours, list its ID, total flight hours, and status.
 
 ### Managerial Explanation: This query helps managers identify drones that have exceeded the maintenance threshold and may require servicing. It is useful for preventative maintenance planning, reducing the risk of equipment failure, and making sure the fleet remains safe and reliable during delivery operations.
 
