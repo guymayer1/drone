@@ -143,14 +143,16 @@ The model also supports key operational constraints. Charging stations and charg
 
 <img width="250" height="148" alt="image" src="https://github.com/user-attachments/assets/f4282411-8081-460a-9203-cf4e81eecc9f" />
 
-## NOT EXISTS: Inactive maintenance workers
+## List the ID and name of technicians who haven't serviced any maintenance log in 2026.
+
 ### Managerial Explanation: This helps managers identify maintenance workers who haven't operated on any drones in 2026. This will help clear the database of workers who have been laid off but yet removed from the system or who haven't been coming to work.
 
 #### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName FROM Technicians WHERE NOT EXISTS (SELECT * FROM maintenance_logs WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID AND maintenanceDate > '2026-01-01 00:00:00');
 
 <img width="458" height="117" alt="image" src="https://github.com/user-attachments/assets/f794a8f7-d5aa-463a-9596-5607adba1b5e" />
 
-## Which areas have the highest delivery demand, how much distance is being covered there, how many drones are serving that area, and which areas may need more drone support in the future?
+## 
+
 ### Managerial Explanation: This query helps management see which service areas are busiest, how far drones are traveling in those areas, how many packages are being delivered, and how many drones are currently being used there. It also adds a demand label so managers can quickly spot areas that may need more drone support in the future.
 #### SELECT Route.areaCode, COUNT(Trip.tripID) AS TotalTrips, SUM(Trip.tripDistance) AS TotalDistance, AVG(Trip.tripDistance) AS AvgTripDistance, COUNT(DISTINCT Trip.Drone_droneID) AS DronesUsed, COUNT(Packages.packageID) AS TotalPackages, CASE     WHEN COUNT(Trip.tripID) >= 10 AND COUNT(DISTINCT Trip.Drone_droneID) <= 2 THEN 'Needs More Drones'    WHEN COUNT(Trip.tripID) >= 5 THEN 'Monitor Demand' ELSE 'Current Capacity is Fine' END AS AreaDemandStatus FROM Route LEFT JOIN Trip    ON Route.routeID = Trip.Route_routeID LEFT JOIN Trip_Packages     ON Trip.tripID = Trip_Packages.Trip_TripID LEFT JOIN Packages     ON Trip_Packages.Packages_packageID = Packages.packageID GROUP BY Route.areaCode HAVING COUNT(Trip.tripID) > 0 ORDER BY TotalTrips DESC, TotalDistance DESC;
 
