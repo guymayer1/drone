@@ -146,14 +146,7 @@ HAVING avg_drone_mpm < (SELECT AVG(tripDistance/tripLength) FROM Trip) ORDER BY 
 ## NOT EXISTS: Inactive maintenance workers
 ### Managerial Explanation: This helps managers identify maintenance workers who haven't operated on any drones in 2026. This will help clear the database of workers who have been laid off but yet removed from the system or who haven't been coming to work.
 
-#### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName
-FROM Technicians
-WHERE NOT EXISTS (
-    SELECT *
-    FROM maintenance_logs
-    WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID 
-    AND maintenanceDate > '2026-01-01 00:00:00'
-);
+#### SELECT Technicians.technicianID, Technicians.techniciansFName, Technicians.techniciansLName FROM Technicians WHERE NOT EXISTS (SELECT * FROM maintenance_logs WHERE maintenance_logs.Technicians_technicianID = Technicians.technicianID AND maintenanceDate > '2026-01-01 00:00:00');
 
 <img width="666" height="199" alt="image" src="https://github.com/user-attachments/assets/2dc202fe-1cb5-4f69-a7c1-351f55a0e764" />
 
@@ -161,7 +154,7 @@ WHERE NOT EXISTS (
 ## Find drones that have at least one trip over 10 miles
 ### Managerial Explanation: This query helps managers identify drones that are being used for longer-distance deliveries. This is useful for evaluating route demands, determining which drones are handling more intensive assignments, and assessing whether long-distance trips are being assigned appropriately based on drone capability and battery constraints.
 
-#### SELECT Drone.droneID FROM Drone WHERE EXISTS (    SELECT *     FROM Trip    WHERE Trip.Drone_droneID = Drone.droneID  AND Trip.tripDistance > 10 );
+#### SELECT Drone.droneID FROM Drone WHERE EXISTS (SELECT * FROM Trip WHERE Trip.Drone_droneID = Drone.droneID AND Trip.tripDistance > 10);
 
 <img width="174" height="286" alt="image" src="https://github.com/user-attachments/assets/736f6748-ae2f-4028-bd26-715ad4d4d793" />
 
