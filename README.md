@@ -86,7 +86,7 @@ The model also supports key operational constraints. Charging stations and charg
 #### SELECT Drone.droneID, Drone.status, Drone.battery, Drone.flightHours FROM Drone;
 <img width="394" height="259" alt="image" src="https://github.com/user-attachments/assets/01714170-e013-42b6-8f09-1390ac0ec179" />
 
-## For every drone that has surpassed 50 flight hours, list its ID, total flight hours, and status.
+## For every drone that has surpassed 50 flight hours, list its ID, total flight hours, and status. These drones now require a maintenance log to be created.
 
 ### Managerial Explanation: This query helps managers identify drones that have exceeded the maintenance threshold and may require servicing. It is useful for preventative maintenance planning, reducing the risk of equipment failure, and making sure the fleet remains safe and reliable during delivery operations.
 
@@ -94,7 +94,7 @@ The model also supports key operational constraints. Charging stations and charg
 
 <img width="570" height="269" alt="image" src="https://github.com/user-attachments/assets/841a03f3-8bc1-4e49-8d5a-32c36262bd78" />
 
-## List the package ID, type, weight, and contenets for every trip.
+## List the package ID, type, weight, and contents for every trip.
 
 ### Managerial Explanation: This query helps managers understand how packages are being distributed across trips. It is useful for monitoring package loads, verifying that delivery assignments are being made correctly, and evaluating whether trips are being used efficiently to carry multiple deliveries at once.
 
