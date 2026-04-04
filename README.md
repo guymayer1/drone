@@ -132,7 +132,7 @@ The model also supports key operational constraints. Charging stations and charg
 
 ### Managerial Explanation: This query helps management evaluate warehouse activity by showing how many packages each warehouse has handled and the total weight processed. It is useful for comparing warehouse workload, identifying high-volume locations, and supporting decisions related to staffing, resource allocation, and operational efficiency.
 
-#### SELECT Warehouse.warehouseID, COUNT(Packages.packageID) AS TotalPackagesHandled, SUM(Packages.weight) AS TotalWeightHandled FROM Warehouse JOIN Packages ON Warehouse.warehouseID = Packages.Warehouse_warehouseID GROUP BY Warehouse.warehouseID HAVING COUNT(Packages.packageID) > 0 ORDER BY TotalPackagesHandled DESC;
+#### SELECT Warehouse.warehouseID, COUNT(Packages.packageID) AS TotalPackagesHandled, SUM(Packages.weight) AS TotalWeightHandled FROM Warehouse JOIN Packages ON Warehouse.warehouseID = Packages.Warehouse_warehouseID GROUP BY Warehouse.warehouseID ORDER BY TotalPackagesHandled DESC;
 
 <img width="553" height="175" alt="image" src="https://github.com/user-attachments/assets/855c610f-49e0-45a0-a2a6-58c596e3f4c4" />
 
